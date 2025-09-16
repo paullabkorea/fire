@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주 반딧불 야행 - 자연과 함께하는 밤</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d3748 100%);
+            overflow-x: hidden;
+        }
+
+        /* 반딧불 애니메이션 */
+        .firefly {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #ffeb3b 0%, #fff176 30%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b, 0 0 30px #ffeb3b;
+            animation: fly 15s infinite linear;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh) translateX(-10px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(calc(100vw + 10px));
+                opacity: 0;
+            }
+        }
+
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffeb3b;
+            text-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 235, 59, 0.2);
+            color: #ffeb3b;
+            transform: translateY(-2px);
+        }
+
+        /* 메인 히어로 섹션 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255, 235, 59, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 235, 59, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(255, 235, 59, 0.5);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(255, 235, 59, 0.8), 0 0 40px rgba(255, 235, 59, 0.6);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffeb3b, #ffc107);
+            color: #1a2332;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 235, 59, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 235, 59, 0.4);
+        }
+
+        /* 섹션 스타일 */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffeb3b, transparent);
+        }
+
+        /* 행사 소개 */
+        .event-intro {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .event-intro h3 {
+            color: #ffeb3b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-intro p {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* 하이라이트 카드 */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 235, 59, 0.2);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 235, 59, 0.2);
+            border-color: rgba(255, 235, 59, 0.4);
+        }
+
+        .highlight-card h4 {
+            color: #ffeb3b;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-card p {
+            color: #cbd5e0;
+        }
+
+        /* 푸터 */
+        footer {
+            background: rgba(15, 20, 25, 0.95);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .event-intro {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 반딧불 애니메이션 -->
+    <div id="fireflies"></div>
+
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">✨ 제주 반딧불 야행</div>
+            <ul class="nav-links">
+                <li><a href="#home">행사소개</a></li>
+                <li><a href="about.html">프로그램 안내</a></li>
+                <li><a href="contact.html">오시는 길</a></li>
+                <li><a href="https://paullabworkspace.notion.site/270ebf76ee8a80f080fcc5c9b1a60f37?source=copy_link" target="_blank">업체소개</a></li>
+                <li><a href="https://forms.gle/pr7r2hmb6RnzzBeU6" target="_blank">참가신청</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>제주 반딧불 야행</h1>
+            <p>제주의 밤하늘 아래, 신비로운 반딧불과 함께하는 특별한 시간</p>
+            <a href="https://forms.gle/pr7r2hmb6RnzzBeU6" target="_blank" class="cta-button">지금 참가신청</a>
+        </div>
+    </section>
+
+    <!-- 행사 소개 -->
+    <section class="section">
+        <h2 class="section-title">행사 소개</h2>
+        
+        <div class="event-intro">
+            <h3>🌟 제주 반딧불 야행이란?</h3>
+            <p>제주도의 깨끗한 자연 속에서 반딧불이들의 신비로운 춤을 감상하는 특별한 야간 생태 체험 프로그램입니다. 도시의 불빛에서 벗어나 제주의 청정 자연 속에서 반딧불이들이 만드는 자연의 일루미네이션을 경험해보세요.</p>
+            
+            <h3>✨ 왜 특별한가요?</h3>
+            <p>제주도는 한국에서 몇 안 되는 반딧불이 서식지 중 하나입니다. 특히 여름밤 제주의 숲속에서 만나는 반딧불이들의 모습은 잊을 수 없는 추억이 될 것입니다. 전문 생태 해설사와 함께하는 안전하고 교육적인 프로그램으로 가족 모두가 즐길 수 있습니다.</p>
+        </div>
+
+        <div class="highlights">
+            <div class="highlight-card">
+                <h4>🌙 야간 생태 탐험</h4>
+                <p>전문 가이드와 함께하는 안전한 야간 숲속 탐험으로 제주의 밤 생태계를 관찰합니다.</p>
+            </div>
+            
+            <div class="highlight-card">
+                <h4>✨ 반딧불이 관찰</h4>
+                <p>계절에 따라 다양한 반딧불이 종류를 관찰하고 그들의 생태에 대해 배웁니다.</p>
+            </div>
+            
+            <div class="highlight-card">
+                <h4>📸 추억 남기기</h4>
+                <p>반딧불이와 함께하는 특별한 사진 촬영 시간과 추억의 순간들을 기록합니다.</p>
+            </div>
+            
+            <div class="highlight-card">
+                <h4>🍃 생태 교육</h4>
+                <p>제주의 자연환경과 반딧불이의 생태학적 중요성에 대한 교육 프로그램을 제공합니다.</p>
+            </div>
+            
+            <div class="highlight-card">
+                <h4>👨‍👩‍👧‍👦 가족 친화적</h4>
+                <p>5세 이상 어린이부터 어른까지 모든 연령대가 안전하게 참여할 수 있는 프로그램입니다.</p>
+            </div>
+            
+            <div class="highlight-card">
+                <h4>🎁 기념품 제공</h4>
+                <p>참가자 모두에게 제주 반딧불 야행 기념품과 생태 교육 자료를 제공합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2025 제주 반딧불 야행. 자연과 함께하는 특별한 밤을 선사합니다.</p>
+    </footer>
+
+    <script>
+        // 반딧불 애니메이션 생성
+        function createFirefly() {
+            const firefly = document.createElement('div');
+            firefly.className = 'firefly';
+            
+            // 랜덤 위치와 애니메이션 지연
+            firefly.style.left = Math.random() * 100 + 'vw';
+            firefly.style.animationDelay = Math.random() * 15 + 's';
+            firefly.style.animationDuration = (15 + Math.random() * 10) + 's';
+            
+            document.getElementById('fireflies').appendChild(firefly);
+            
+            // 애니메이션 완료 후 제거
+            setTimeout(() => {
+                firefly.remove();
+            }, 25000);
+        }
+
+        // 주기적으로 반딧불 생성
+        setInterval(createFirefly, 3000);
+        
+        // 초기 반딧불들 생성
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFirefly, i * 1000);
+        }
+
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 스크롤 시 네비게이션 배경 변화
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 20, 25, 0.98)';
+            } else {
+                nav.style.background = 'rgba(15, 20, 25, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
